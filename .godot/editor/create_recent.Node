@@ -1,5 +1,6 @@
+CollisionShape2D
+Area2D
 Node2D
 Camera2D
 Label
-CollisionShape2D
 CharacterBody2D

@@ -1,17 +1,28 @@
 extends CharacterBody2D
+class_name Player
 
 var walkTick := 0
 const SPEED = 1600
 
 @onready var sprite = $sprite
+@onready var camera = $CameraOrigin/Camera2D
+@onready var camOrigin = $CameraOrigin
+
+var newOrigin : Vector2 = Vector2.ZERO
+var originTicks : int = 0
 
 func _ready():
-	pass
+	Global.player = self
 
 
 func _process(delta):
-	
 	playerMovement(delta)
+	
+	if originTicks > 0:
+		originTicks -= 1
+		shiftCameraOrigin(newOrigin)
+	else:
+		shiftCameraOrigin(Vector2.ZERO)
 
 func playerMovement(delta):
 	var dir := Vector2.ZERO
@@ -33,3 +44,6 @@ func playerMovement(delta):
 		walkTick = 0
 	
 	move_and_slide()
+
+func shiftCameraOrigin(newPos):
+	camOrigin.position = lerp(camOrigin.position,newPos,0.1)

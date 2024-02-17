@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1o53r21lbqim"]
+[gd_scene load_steps=4 format=3 uid="uid://b1o53r21lbqim"]
 
 [ext_resource type="PackedScene" uid="uid://coesb8yvkvpq2" path="res://object_scenes/player/player.tscn" id="1_53bfd"]
+[ext_resource type="PackedScene" uid="uid://sf5w8pseayko" path="res://object_scenes/cameraShifter/camera_shift_area.tscn" id="2_jf2ea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxxal"]
+size = Vector2(20, 42)
 
 [node name="TestLevel" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_53bfd")]
 position = Vector2(54, 25)
+
+[node name="CameraShiftArea" parent="." instance=ExtResource("2_jf2ea")]
+position = Vector2(18, 28)
+originSet = Vector2(-20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraShiftArea"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_uxxal")

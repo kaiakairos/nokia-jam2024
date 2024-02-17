@@ -2,3 +2,6 @@ res://object_scenes/player.tscn
 res://object_scenes/player/player.tscn
 res://object_scenes/player/player.gd
 res://main_scenes/test/test_level.tscn
+res://autoload/Global.gd
+res://object_scenes/cameraShifter/camera_shift_area.gd
+res://object_scenes/cameraShifter/camera_shift_area.tscn
