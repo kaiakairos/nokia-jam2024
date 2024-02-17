@@ -1,0 +1,5 @@
+Node2D
+Camera2D
+Label
+CollisionShape2D
+CharacterBody2D

@@ -1,0 +1,4 @@
+res://object_scenes/player.tscn
+res://object_scenes/player/player.tscn
+res://object_scenes/player/player.gd
+res://main_scenes/test/test_level.tscn
