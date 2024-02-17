@@ -1,5 +1,8 @@
 CollisionShape2D
+Player
+Interactable
 Area2D
+RayCast2D
 Node2D
 Camera2D
 Label

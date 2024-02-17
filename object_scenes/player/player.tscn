@@ -40,4 +40,12 @@ offset_bottom = 22.0
 text = "fart poop and shit"
 label_settings = SubResource("LabelSettings_t8gys")
 autowrap_mode = 2
+visible_characters = 19
 visible_characters_behavior = 1
+visible_ratio = 1.05556
+
+[node name="InteractCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 5)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false

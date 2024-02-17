@@ -5,3 +5,7 @@ res://main_scenes/test/test_level.tscn
 res://autoload/Global.gd
 res://object_scenes/cameraShifter/camera_shift_area.gd
 res://object_scenes/cameraShifter/camera_shift_area.tscn
+res://object_scenes/interactable/interactable.tscn
+res://object_scenes/interactable/interactable.gd
+res://object_scenes/interactable/individualInteractables/testDialogue.gd
+res://autoload/DialogueTrees.gd
