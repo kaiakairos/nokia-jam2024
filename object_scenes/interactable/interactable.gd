@@ -9,10 +9,16 @@ class_name Interactable
 @export var teleportPos :Vector2 = Vector2.ZERO
 
 @export var oneShot :bool = false
+@export var showSprite :bool = false
 var activated = false
+
+@export var needItem:bool = false
+@export var item :String = ""
+@export var treeIfNoItem :String = ""
 
 func _ready():
 	set_process(false)
+	$ItemSprite.visible = showSprite
 
 func _process(delta):
 	
@@ -30,22 +36,30 @@ func runCast():
 	if !mustBeInteracted:
 		return
 	
-	if !DialogueTrees.has_method(treeFunction):
+	var DIALOGUE = treeFunction
+	var hasItem = Global.items.has(item)
+	if needItem:
+		if !hasItem:
+			DIALOGUE = treeIfNoItem
+	
+	if !DialogueTrees.has_method(DIALOGUE):
 		print_debug("WARNING: I DO NOT HAVE A CORRECT DIALOGUE TREE: " + str(self))
 		return
 	
 	if originSetWhenInteracting != Vector2.ZERO:
 		set_process(true)
 	
-	var callable = Callable(DialogueTrees, treeFunction)
+	var callable = Callable(DialogueTrees, DIALOGUE)
 	
 	await callable.call()
 	set_process(false)
 	
-	if teleportPlayer:
+	if teleportPlayer and hasItem:
 		Global.player.teleport(teleportPos)
 	
-	activated = true
+	if hasItem:
+		activated = true
+		$ItemSprite.visible = false
 
 
 func _on_body_entered(body):
@@ -66,3 +80,4 @@ func _on_body_entered(body):
 			body.teleport(teleportPos)
 		
 		activated = true
+		$ItemSprite.visible = false

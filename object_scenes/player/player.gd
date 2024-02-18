@@ -60,6 +60,11 @@ func playerMovement(delta):
 	move_and_slide()
 
 func interacting():
+	var showEye = false
+	if isLevelTransitioning:
+		$CameraOrigin/Camera2D/eye.visible = showEye
+		return
+	
 	
 	if Input.is_action_just_pressed("interact"):
 		
@@ -70,7 +75,16 @@ func interacting():
 		if interactCast.is_colliding():
 			if interactCast.get_collider() is Interactable:
 				interactCast.get_collider().runCast()
+	else:
+		if interactCast.is_colliding() and !isInDialogue:
+			var collider = interactCast.get_collider()
+			if collider is Interactable:
+				if collider.mustBeInteracted:
+					showEye = true
+				if collider.oneShot and collider.activated:
+					showEye = false
 	
+	$CameraOrigin/Camera2D/eye.visible = showEye
 	
 	
 func shiftCameraOrigin(newPos:Vector2):

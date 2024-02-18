@@ -25,6 +25,11 @@ func struggleDoor():
 	await Global.runDialogue("After some effort, the door snaps open.",true)
 	return
 
+func pickUpKeyFirst():
+	Global.items.append("key1")
+	await Global.runDialogue("You found a dusty old key.",true)
+	return
+
 func poop():
 	await Global.runDialogue("crap crap fart")
 	await Global.runDialogue("crap crap farty stink")
