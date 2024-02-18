@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://coesb8yvkvpq2"]
+[gd_scene load_steps=7 format=3 uid="uid://coesb8yvkvpq2"]
 
 [ext_resource type="Script" path="res://object_scenes/player/player.gd" id="1_26n5a"]
 [ext_resource type="Texture2D" uid="uid://dqj60fa35fhaw" path="res://object_scenes/player/player.png" id="1_gpcwn"]
 [ext_resource type="FontFile" uid="uid://b0h824ort3fim" path="res://zeeg/fonts/tiny.ttf" id="3_fq4dl"]
+[ext_resource type="Texture2D" uid="uid://cx8gjp54k1kmg" path="res://ui_scenes/transitionFade/lowCutFade.png" id="4_2hffa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3m2a5"]
 radius = 2.0
@@ -11,9 +12,10 @@ radius = 2.0
 line_spacing = 1.0
 font = ExtResource("3_fq4dl")
 font_size = 6
-outline_size = 3
+font_color = Color(0.780392, 0.941176, 0.847059, 1)
+outline_size = 7
 outline_color = Color(0.262745, 0.321569, 0.239216, 1)
-shadow_size = 3
+shadow_size = 7
 shadow_color = Color(0.262745, 0.321569, 0.239216, 1)
 
 [node name="player" type="CharacterBody2D"]
@@ -37,15 +39,20 @@ offset_left = -39.0
 offset_top = -22.0
 offset_right = 39.0
 offset_bottom = 22.0
-text = "fart poop and shit"
 label_settings = SubResource("LabelSettings_t8gys")
 autowrap_mode = 2
-visible_characters = 19
 visible_characters_behavior = 1
-visible_ratio = 1.05556
+
+[node name="LowCutFade" type="Sprite2D" parent="CameraOrigin/Camera2D"]
+z_index = 5
+position = Vector2(-42, -24)
+texture = ExtResource("4_2hffa")
+centered = false
+hframes = 5
 
 [node name="InteractCast" type="RayCast2D" parent="."]
 target_position = Vector2(0, 5)
 collision_mask = 4
+hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false

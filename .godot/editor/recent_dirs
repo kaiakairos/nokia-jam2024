@@ -1,5 +1,5 @@
+res://main_scenes/mainLevel
 res://autoload
-res://object_scenes/interactable/individualInteractables
 res://object_scenes/interactable
 res://object_scenes/cameraShifter
 res://main_scenes/test

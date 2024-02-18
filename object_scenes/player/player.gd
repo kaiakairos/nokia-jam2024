@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 var isInDialogue : bool = false
+var isLevelTransitioning : bool = false
 
 var walkTick := 0
 const SPEED = 1600
@@ -25,7 +26,7 @@ func _process(delta):
 	
 	interacting()
 	
-	if !isInDialogue:
+	if !isInDialogue and !isLevelTransitioning:
 		playerMovement(delta)
 	
 	if originTicks > 0:
@@ -101,3 +102,30 @@ func say(text:String,delay:float=0.02,endOfDialogue:bool=false):
 		isInDialogue = false
 	return
 	
+func teleport(newPos):
+	isLevelTransitioning = true
+	$CameraOrigin/Camera2D/LowCutFade.frame = 1
+	await get_tree().create_timer(0.2).timeout
+	$CameraOrigin/Camera2D/LowCutFade.frame = 2
+	await get_tree().create_timer(0.2).timeout
+	$CameraOrigin/Camera2D/LowCutFade.frame = 3
+	await get_tree().create_timer(0.2).timeout
+	$CameraOrigin/Camera2D/LowCutFade.frame = 4
+	await get_tree().create_timer(0.2).timeout
+	$CameraOrigin/Camera2D.enabled = false
+	
+	
+	
+	position = newPos
+	await get_tree().create_timer(1.0).timeout
+	$CameraOrigin/Camera2D.enabled = true
+	
+	$CameraOrigin/Camera2D/LowCutFade.frame = 3
+	await get_tree().create_timer(0.2).timeout
+	$CameraOrigin/Camera2D/LowCutFade.frame = 2
+	await get_tree().create_timer(0.2).timeout
+	$CameraOrigin/Camera2D/LowCutFade.frame = 1
+	await get_tree().create_timer(0.2).timeout
+	$CameraOrigin/Camera2D/LowCutFade.frame = 0
+	await get_tree().create_timer(0.2).timeout
+	isLevelTransitioning = false
