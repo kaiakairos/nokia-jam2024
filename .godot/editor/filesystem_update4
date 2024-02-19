@@ -1,9 +1,9 @@
+res://main_scenes/mainLevel/game.tscn
 res://object_scenes/player/player.tscn
 res://main_scenes/test/test_level.tscn
 res://object_scenes/cameraShifter/camera_shift_area.tscn
 res://object_scenes/interactable/interactable.tscn
-res://main_scenes/mainLevel/game.tscn
-res://object_scenes/interactable/interactable.gd
-res://object_scenes/player/player.gd
-res://autoload/DialogueTrees.gd
+res://main_scenes/mainLevel/game.gd
 res://autoload/Global.gd
+res://autoload/DialogueTrees.gd
+res://object_scenes/interactable/interactable.gd

@@ -17,9 +17,29 @@ func frozenBeast():
 	await Global.runDialogue("You get the sense that you shouldn't be looking at them.",true)
 	return
 
+func unfreeze():
+	await Global.runDialogue("The machine sits still and silent.")
+	await Global.runDialogue("You press its buttons, and hear the machine let out a long, unending breath.")
+	await Global.runDialogue("The room slowly gets warmer.",true)
+	Global.player.position.y += 300
+	return
+
+func unfrozenBeast():
+	await Global.runDialogue("The flesh is gone.",true)
+	return
+
 func snowMound():
 	await Global.runDialogue("A huge mound of ice blocks your way.")
 	await Global.runDialogue("You can hear the subtle movement of water.",true)
+	return
+
+func brokenLadder():
+	await Global.runDialogue("The bunker ladder is broken.")
+	await Global.runDialogue("It was torn as easily as paper.",true)
+	return
+
+func meltingMound():
+	await Global.runDialogue("The dripping of water gets louder and louder.",true)
 	return
 
 func frozenDoor():

@@ -42,17 +42,14 @@ func runCast():
 		if !hasItem:
 			DIALOGUE = treeIfNoItem
 	
-	if !DialogueTrees.has_method(DIALOGUE):
-		print_debug("WARNING: I DO NOT HAVE A CORRECT DIALOGUE TREE: " + str(self))
-		return
+	if DialogueTrees.has_method(DIALOGUE):
+		if originSetWhenInteracting != Vector2.ZERO:
+			set_process(true)
 	
-	if originSetWhenInteracting != Vector2.ZERO:
-		set_process(true)
-	
-	var callable = Callable(DialogueTrees, DIALOGUE)
-	
-	await callable.call()
-	set_process(false)
+		var callable = Callable(DialogueTrees, DIALOGUE)
+		
+		await callable.call()
+		set_process(false)
 	
 	if teleportPlayer and hasItem:
 		Global.player.teleport(teleportPos)

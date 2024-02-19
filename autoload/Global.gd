@@ -1,5 +1,6 @@
 extends Node
 
+var game = null
 var player : Player = null
 var items :Array= [""]
 

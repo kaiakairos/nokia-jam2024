@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://08kga67yko78"]
+[gd_scene load_steps=23 format=3 uid="uid://08kga67yko78"]
 
+[ext_resource type="Script" path="res://main_scenes/mainLevel/game.gd" id="1_qumyb"]
 [ext_resource type="Texture2D" uid="uid://b00jj7tu4uck1" path="res://main_scenes/backgroundArts/entrance.png" id="1_ta0qr"]
 [ext_resource type="PackedScene" uid="uid://coesb8yvkvpq2" path="res://object_scenes/player/player.tscn" id="2_geoaq"]
 [ext_resource type="Texture2D" uid="uid://b3prcrm5j0mho" path="res://main_scenes/backgroundArts/door.png" id="2_xqqnx"]
@@ -9,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://d3wkrr8khtbxe" path="res://object_scenes/interactable/interactable.tscn" id="5_ibad4"]
 [ext_resource type="PackedScene" uid="uid://sf5w8pseayko" path="res://object_scenes/cameraShifter/camera_shift_area.tscn" id="6_5frm0"]
 [ext_resource type="Texture2D" uid="uid://1juxa6khs6rd" path="res://main_scenes/backgroundArts/unfrozenBeasts.png" id="6_xi1o0"]
+[ext_resource type="Texture2D" uid="uid://cj0c3xodii74i" path="res://main_scenes/backgroundArts/unfrozenDoor.png" id="9_5ov7o"]
+[ext_resource type="Texture2D" uid="uid://dvxokywyyameo" path="res://main_scenes/backgroundArts/unfrozenEntrance.png" id="9_h227m"]
+[ext_resource type="Texture2D" uid="uid://b7mnp0jjs38kb" path="res://main_scenes/backgroundArts/unfrozenHallway.png" id="10_y8bw8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ax044"]
 size = Vector2(28, 28)
@@ -20,7 +24,10 @@ size = Vector2(11, 11)
 size = Vector2(5, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plnto"]
-size = Vector2(38, 8)
+size = Vector2(38, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04pif"]
+size = Vector2(21, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y3l5"]
 size = Vector2(90, 24)
@@ -31,151 +38,152 @@ size = Vector2(103, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fqwvf"]
 size = Vector2(48, 24)
 
-[node name="Game" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6mmj"]
+size = Vector2(38, 17)
 
-[node name="Backgrounds" type="Node2D" parent="."]
+[node name="Game" type="Node2D"]
+script = ExtResource("1_qumyb")
+
+[node name="Intro" type="Node2D" parent="."]
+
+[node name="Backgrounds" type="Node2D" parent="Intro"]
 z_index = -3
 
-[node name="Entrance" type="Sprite2D" parent="Backgrounds"]
+[node name="Entrance" type="Sprite2D" parent="Intro/Backgrounds"]
 position = Vector2(1, 70)
 texture = ExtResource("1_ta0qr")
 centered = false
 
-[node name="Door" type="Sprite2D" parent="Backgrounds"]
+[node name="Door" type="Sprite2D" parent="Intro/Backgrounds"]
 position = Vector2(171, 9)
 texture = ExtResource("2_xqqnx")
 centered = false
 
-[node name="Hallway" type="Sprite2D" parent="Backgrounds"]
+[node name="Hallway" type="Sprite2D" parent="Intro/Backgrounds"]
 position = Vector2(347, 32)
 texture = ExtResource("3_0ic3i")
 centered = false
 
-[node name="FrozenBeast" type="Sprite2D" parent="Backgrounds"]
+[node name="FrozenBeast" type="Sprite2D" parent="Intro/Backgrounds"]
 position = Vector2(348, -107)
 texture = ExtResource("4_v8sv3")
 centered = false
 
-[node name="Boiler" type="Sprite2D" parent="Backgrounds"]
+[node name="Boiler" type="Sprite2D" parent="Intro/Backgrounds"]
 position = Vector2(517, -97)
 texture = ExtResource("5_3dqko")
 centered = false
 
-[node name="UnfrozenBeasts" type="Sprite2D" parent="Backgrounds"]
-position = Vector2(221, 259)
-texture = ExtResource("6_xi1o0")
-centered = false
+[node name="Collisions" type="Node2D" parent="Intro"]
 
-[node name="Collisions" type="Node2D" parent="."]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Collisions"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Intro/Collisions"]
 position = Vector2(6, 86)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Intro/Collisions/StaticBody2D"]
 polygon = PackedVector2Array(7, -16, 7, 25, 12, 44, 21, 57, 54, 57, 99, 62, 99, 70, -6, 70, -6, -16)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Collisions/StaticBody2D"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Intro/Collisions/StaticBody2D"]
 polygon = PackedVector2Array(20, -12, 20, 25, 37, 47, 102, 47, 102, -12, 102, -18, 20, -18, 5, -18, 5, -12)
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Collisions"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Intro/Collisions"]
 position = Vector2(341, -57)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions/StaticBody2D2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Intro/Collisions/StaticBody2D2"]
 polygon = PackedVector2Array(16, -3, 16, 18, 40, 28, 48, 36, 48, 56, -28, 55, -27, -11, 19, -52, 127, -43, 103, 56, 57, 56, 57, 28, 66, 22, 69, 12, 82, 12, 86, -6, 73, -6, 54, -15, 43, -15, 35, -9)
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="Collisions"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="Intro/Collisions"]
 position = Vector2(183, 45)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions/StaticBody2D3"]
-polygon = PackedVector2Array(-8, 31, 4, 28, 4, 35, 82, 35, 82, 24, 98, 24, 98, 19, 82, 19, 82, 7, 11, 7, 11, 29, -6, 29, -6, -8, 106, -8, 106, 47, -8, 47)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Intro/Collisions/StaticBody2D3"]
+polygon = PackedVector2Array(-8, 31, 4, 28, 4, 35, 82, 35, 82, 24, 98, 24, 98, 18, 82, 18, 82, 7, 11, 7, 11, 29, -6, 29, -6, -8, 106, -8, 106, 47, -8, 47)
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="Collisions"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="Intro/Collisions"]
 position = Vector2(347, 55)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions/StaticBody2D4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Intro/Collisions/StaticBody2D4"]
 polygon = PackedVector2Array(-17, 3, -17, 21, -2, 28, -2, 17, 98, 17, 98, 24, -17, 24, -17, 49, 127, 49, 127, 3)
 
-[node name="StaticBody2D5" type="StaticBody2D" parent="Collisions"]
+[node name="StaticBody2D5" type="StaticBody2D" parent="Intro/Collisions"]
 position = Vector2(498, -100)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions/StaticBody2D5"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Intro/Collisions/StaticBody2D5"]
 polygon = PackedVector2Array(15, 96, 28, 96, 28, 51, 98, 51, 114, 68, 123, 63, 133, 76, 104, 87, 69, 59, 36, 59, 36, 98, 104.066, 97.4511, 160, 97, 160, 40, 98, 40, 15, 40)
 
-[node name="Transitions" type="Node2D" parent="."]
+[node name="Transitions" type="Node2D" parent="Intro"]
 
-[node name="Interactable" parent="Transitions" instance=ExtResource("5_ibad4")]
+[node name="Interactable" parent="Intro/Transitions" instance=ExtResource("5_ibad4")]
 position = Vector2(114, 141)
 mustBeInteracted = false
 teleportPlayer = true
 teleportPos = Vector2(192, 76)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/Interactable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/Transitions/Interactable"]
 shape = SubResource("RectangleShape2D_ax044")
 
-[node name="Interactable2" parent="Transitions" instance=ExtResource("5_ibad4")]
+[node name="Interactable2" parent="Intro/Transitions" instance=ExtResource("5_ibad4")]
 position = Vector2(174, 75)
 mustBeInteracted = false
 teleportPlayer = true
 teleportPos = Vector2(95, 142)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/Interactable2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/Transitions/Interactable2"]
 shape = SubResource("RectangleShape2D_ax044")
 
-[node name="Interactable3" parent="Transitions" instance=ExtResource("5_ibad4")]
+[node name="Interactable3" parent="Intro/Transitions" instance=ExtResource("5_ibad4")]
 position = Vector2(292, 67)
 mustBeInteracted = false
 teleportPlayer = true
 teleportPos = Vector2(354, 75)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/Interactable3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/Transitions/Interactable3"]
 shape = SubResource("RectangleShape2D_ax044")
 
-[node name="Interactable4" parent="Transitions" instance=ExtResource("5_ibad4")]
+[node name="Interactable4" parent="Intro/Transitions" instance=ExtResource("5_ibad4")]
 position = Vector2(334, 75)
 mustBeInteracted = false
 teleportPlayer = true
 teleportPos = Vector2(274, 67)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/Interactable4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/Transitions/Interactable4"]
 shape = SubResource("RectangleShape2D_ax044")
 
-[node name="Interactable8" parent="Transitions" instance=ExtResource("5_ibad4")]
+[node name="Interactable8" parent="Intro/Transitions" instance=ExtResource("5_ibad4")]
 position = Vector2(530, 7)
 mustBeInteracted = false
 teleportPlayer = true
 teleportPos = Vector2(380, 75)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/Interactable8"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/Transitions/Interactable8"]
 shape = SubResource("RectangleShape2D_ax044")
 
-[node name="Interactable10" parent="Transitions" instance=ExtResource("5_ibad4")]
+[node name="Interactable10" parent="Intro/Transitions" instance=ExtResource("5_ibad4")]
 position = Vector2(394, 4)
 mustBeInteracted = false
 teleportPlayer = true
 teleportPos = Vector2(427, 75)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/Interactable10"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/Transitions/Interactable10"]
 shape = SubResource("RectangleShape2D_ax044")
 
-[node name="Interactable5" parent="Transitions" instance=ExtResource("5_ibad4")]
+[node name="Interactable5" parent="Intro/Transitions" instance=ExtResource("5_ibad4")]
 position = Vector2(216, 36)
 treeFunction = "frozenDoor"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/Interactable5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/Transitions/Interactable5"]
 position = Vector2(-0.5, 11.5)
 shape = SubResource("RectangleShape2D_142dk")
 
-[node name="Interactable6" parent="Transitions" instance=ExtResource("5_ibad4")]
+[node name="Interactable6" parent="Intro/Transitions" instance=ExtResource("5_ibad4")]
 position = Vector2(428, 57)
 treeFunction = "struggleDoor"
 teleportPlayer = true
 teleportPos = Vector2(393, -18)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/Interactable6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/Transitions/Interactable6"]
 position = Vector2(-0.5, 11.5)
 shape = SubResource("RectangleShape2D_142dk")
 
-[node name="Interactable9" parent="Transitions" instance=ExtResource("5_ibad4")]
+[node name="Interactable9" parent="Intro/Transitions" instance=ExtResource("5_ibad4")]
 position = Vector2(380, 57)
 treeFunction = "unlockedDoor"
 teleportPlayer = true
@@ -184,80 +192,306 @@ needItem = true
 item = "key1"
 treeIfNoItem = "lockedDoor"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/Interactable9"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/Transitions/Interactable9"]
 position = Vector2(-0.5, 11.5)
 shape = SubResource("RectangleShape2D_142dk")
 
-[node name="Interactable7" parent="Transitions" instance=ExtResource("5_ibad4")]
+[node name="Interactable7" parent="Intro/Transitions" instance=ExtResource("5_ibad4")]
 position = Vector2(369, -65)
 treeFunction = "pickUpKeyFirst"
 oneShot = true
 showSprite = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/Interactable7"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/Transitions/Interactable7"]
 position = Vector2(3.5, 3.5)
 shape = SubResource("RectangleShape2D_rfth6")
 
-[node name="AmbientDialogue" type="Node2D" parent="."]
+[node name="AmbientDialogue" type="Node2D" parent="Intro"]
 
-[node name="Interactable" parent="AmbientDialogue" instance=ExtResource("5_ibad4")]
+[node name="Interactable" parent="Intro/AmbientDialogue" instance=ExtResource("5_ibad4")]
 position = Vector2(20, 120)
 treeFunction = "entrance"
 mustBeInteracted = false
 oneShot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AmbientDialogue/Interactable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/AmbientDialogue/Interactable"]
 shape = SubResource("RectangleShape2D_ax044")
 
-[node name="InteractiveDialogue" type="Node2D" parent="."]
+[node name="InteractiveDialogue" type="Node2D" parent="Intro"]
 
-[node name="Interactable" parent="InteractiveDialogue" instance=ExtResource("5_ibad4")]
+[node name="Interactable" parent="Intro/InteractiveDialogue" instance=ExtResource("5_ibad4")]
 position = Vector2(391, -69)
 treeFunction = "frozenBeast"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveDialogue/Interactable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/InteractiveDialogue/Interactable"]
 shape = SubResource("RectangleShape2D_plnto")
 
-[node name="Interactable2" parent="InteractiveDialogue" instance=ExtResource("5_ibad4")]
+[node name="Interactable3" parent="Intro/InteractiveDialogue" instance=ExtResource("5_ibad4")]
+position = Vector2(618, -45)
+treeFunction = "unfreeze"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/InteractiveDialogue/Interactable3"]
+position = Vector2(-6.5, 6)
+shape = SubResource("RectangleShape2D_04pif")
+
+[node name="Interactable2" parent="Intro/InteractiveDialogue" instance=ExtResource("5_ibad4")]
 position = Vector2(457, 76)
 treeFunction = "snowMound"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveDialogue/Interactable2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/InteractiveDialogue/Interactable2"]
 shape = SubResource("RectangleShape2D_plnto")
 
-[node name="CamFocus" type="Node2D" parent="."]
+[node name="CamFocus" type="Node2D" parent="Intro"]
 
-[node name="CameraShiftArea" parent="CamFocus" instance=ExtResource("6_5frm0")]
+[node name="CameraShiftArea" parent="Intro/CamFocus" instance=ExtResource("6_5frm0")]
 position = Vector2(389, -70)
 originSet = Vector2(0, -10)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CamFocus/CameraShiftArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/CamFocus/CameraShiftArea"]
 position = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_5y3l5")
 
-[node name="CameraShiftArea4" parent="CamFocus" instance=ExtResource("6_5frm0")]
+[node name="CameraShiftArea4" parent="Intro/CamFocus" instance=ExtResource("6_5frm0")]
 position = Vector2(398, 68)
 originSet = Vector2(0, -10)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CamFocus/CameraShiftArea4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/CamFocus/CameraShiftArea4"]
 position = Vector2(-2, 10)
 shape = SubResource("RectangleShape2D_ywvca")
 
-[node name="CameraShiftArea2" parent="CamFocus" instance=ExtResource("6_5frm0")]
+[node name="CameraShiftArea2" parent="Intro/CamFocus" instance=ExtResource("6_5frm0")]
 position = Vector2(591, -43)
 originSet = Vector2(0, -20)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CamFocus/CameraShiftArea2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/CamFocus/CameraShiftArea2"]
 position = Vector2(-19, 2)
 shape = SubResource("RectangleShape2D_fqwvf")
 
-[node name="CameraShiftArea3" parent="CamFocus" instance=ExtResource("6_5frm0")]
+[node name="CameraShiftArea3" parent="Intro/CamFocus" instance=ExtResource("6_5frm0")]
 position = Vector2(640, -43)
 originSet = Vector2(12, -12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CamFocus/CameraShiftArea3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intro/CamFocus/CameraShiftArea3"]
+position = Vector2(-19, 2)
+shape = SubResource("RectangleShape2D_fqwvf")
+
+[node name="Second" type="Node2D" parent="."]
+position = Vector2(0, 300)
+
+[node name="Backgrounds" type="Node2D" parent="Second"]
+z_index = -3
+
+[node name="Entrance" type="Sprite2D" parent="Second/Backgrounds"]
+position = Vector2(1, 70)
+texture = ExtResource("9_h227m")
+centered = false
+
+[node name="Door" type="Sprite2D" parent="Second/Backgrounds"]
+position = Vector2(171, 9)
+texture = ExtResource("9_5ov7o")
+centered = false
+
+[node name="Hallway" type="Sprite2D" parent="Second/Backgrounds"]
+position = Vector2(347, 32)
+texture = ExtResource("10_y8bw8")
+centered = false
+
+[node name="FrozenBeast" type="Sprite2D" parent="Second/Backgrounds"]
+position = Vector2(348, -107)
+texture = ExtResource("6_xi1o0")
+centered = false
+
+[node name="Boiler" type="Sprite2D" parent="Second/Backgrounds"]
+position = Vector2(517, -97)
+texture = ExtResource("5_3dqko")
+centered = false
+
+[node name="Collisions" type="Node2D" parent="Second"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Second/Collisions"]
+position = Vector2(6, 86)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Second/Collisions/StaticBody2D"]
+polygon = PackedVector2Array(7, -16, 7, 25, 12, 44, 21, 57, 54, 57, 99, 62, 99, 70, -6, 70, -6, -16)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Second/Collisions/StaticBody2D"]
+polygon = PackedVector2Array(20, 31, 37, 47, 102, 47, 102, -12, 102, -18, 20, -18, 5, -18, 5, 32)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Second/Collisions"]
+position = Vector2(341, -57)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Second/Collisions/StaticBody2D2"]
+polygon = PackedVector2Array(17, -8, 22, 5, 16, 18, 40, 28, 48, 36, 48, 56, -28, 55, -27, -11, 19, -52, 127, -43, 103, 56, 57, 56, 57, 28, 73, 13, 84, 12, 86, -6, 73, -6, 61, -10, 54, -18, 44, -19, 37, -10)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Second/Collisions"]
+position = Vector2(183, 45)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Second/Collisions/StaticBody2D3"]
+polygon = PackedVector2Array(-8, 31, 4, 28, 4, 35, 82, 35, 82, 25, 98, 25, 98, 18, 82, 18, 82, 5, 11, 5, 11, 28, -6, 29, -6, -8, 106, -8, 106, 47, -8, 47)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Second/Collisions"]
+position = Vector2(347, 55)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Second/Collisions/StaticBody2D4"]
+polygon = PackedVector2Array(-17, 3, -17, 21, -2, 28, -2, 17, 98, 17, 98, 24, -17, 24, -17, 49, 127, 49, 127, 3)
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Second/Collisions"]
+position = Vector2(498, -100)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Second/Collisions/StaticBody2D5"]
+polygon = PackedVector2Array(15, 96, 28, 96, 28, 51, 98, 51, 114, 68, 123, 63, 133, 76, 104, 87, 69, 59, 36, 59, 36, 98, 104.066, 97.4511, 160, 97, 160, 40, 98, 40, 15, 40)
+
+[node name="Transitions" type="Node2D" parent="Second"]
+
+[node name="Interactable" parent="Second/Transitions" instance=ExtResource("5_ibad4")]
+position = Vector2(114, 141)
+mustBeInteracted = false
+teleportPlayer = true
+teleportPos = Vector2(192, 376)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/Transitions/Interactable"]
+shape = SubResource("RectangleShape2D_ax044")
+
+[node name="Interactable2" parent="Second/Transitions" instance=ExtResource("5_ibad4")]
+position = Vector2(174, 75)
+mustBeInteracted = false
+teleportPlayer = true
+teleportPos = Vector2(95, 442)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/Transitions/Interactable2"]
+shape = SubResource("RectangleShape2D_ax044")
+
+[node name="Interactable3" parent="Second/Transitions" instance=ExtResource("5_ibad4")]
+position = Vector2(292, 67)
+mustBeInteracted = false
+teleportPlayer = true
+teleportPos = Vector2(354, 375)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/Transitions/Interactable3"]
+shape = SubResource("RectangleShape2D_ax044")
+
+[node name="Interactable4" parent="Second/Transitions" instance=ExtResource("5_ibad4")]
+position = Vector2(334, 75)
+mustBeInteracted = false
+teleportPlayer = true
+teleportPos = Vector2(274, 367)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/Transitions/Interactable4"]
+shape = SubResource("RectangleShape2D_ax044")
+
+[node name="Interactable8" parent="Second/Transitions" instance=ExtResource("5_ibad4")]
+position = Vector2(530, 7)
+mustBeInteracted = false
+teleportPlayer = true
+teleportPos = Vector2(380, 375)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/Transitions/Interactable8"]
+shape = SubResource("RectangleShape2D_ax044")
+
+[node name="Interactable10" parent="Second/Transitions" instance=ExtResource("5_ibad4")]
+position = Vector2(394, 4)
+mustBeInteracted = false
+teleportPlayer = true
+teleportPos = Vector2(427, 375)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/Transitions/Interactable10"]
+shape = SubResource("RectangleShape2D_ax044")
+
+[node name="Interactable5" parent="Second/Transitions" instance=ExtResource("5_ibad4")]
+position = Vector2(216, 36)
+treeFunction = "frozenDoor"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/Transitions/Interactable5"]
+position = Vector2(-0.5, 11.5)
+shape = SubResource("RectangleShape2D_142dk")
+
+[node name="Interactable6" parent="Second/Transitions" instance=ExtResource("5_ibad4")]
+position = Vector2(428, 57)
+teleportPlayer = true
+teleportPos = Vector2(393, 282)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/Transitions/Interactable6"]
+position = Vector2(-0.5, 11.5)
+shape = SubResource("RectangleShape2D_142dk")
+
+[node name="Interactable9" parent="Second/Transitions" instance=ExtResource("5_ibad4")]
+position = Vector2(380, 57)
+teleportPlayer = true
+teleportPos = Vector2(530, 288)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/Transitions/Interactable9"]
+position = Vector2(-0.5, 11.5)
+shape = SubResource("RectangleShape2D_142dk")
+
+[node name="Interactable7" parent="Second/Transitions" instance=ExtResource("5_ibad4")]
+position = Vector2(369, -47)
+treeFunction = "pickUpKeyFirst"
+showSprite = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/Transitions/Interactable7"]
+position = Vector2(3.5, 3.5)
+shape = SubResource("RectangleShape2D_rfth6")
+
+[node name="AmbientDialogue" type="Node2D" parent="Second"]
+
+[node name="InteractiveDialogue" type="Node2D" parent="Second"]
+
+[node name="Interactable" parent="Second/InteractiveDialogue" instance=ExtResource("5_ibad4")]
+position = Vector2(391, -69)
+treeFunction = "unfrozenBeast"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/InteractiveDialogue/Interactable"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_a6mmj")
+
+[node name="Interactable2" parent="Second/InteractiveDialogue" instance=ExtResource("5_ibad4")]
+position = Vector2(457, 76)
+treeFunction = "meltingMound"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/InteractiveDialogue/Interactable2"]
+shape = SubResource("RectangleShape2D_plnto")
+
+[node name="Interactable3" parent="Second/InteractiveDialogue" instance=ExtResource("5_ibad4")]
+position = Vector2(25, 120)
+treeFunction = "brokenLadder"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/InteractiveDialogue/Interactable3"]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_plnto")
+
+[node name="CamFocus" type="Node2D" parent="Second"]
+
+[node name="CameraShiftArea" parent="Second/CamFocus" instance=ExtResource("6_5frm0")]
+position = Vector2(389, -70)
+originSet = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/CamFocus/CameraShiftArea"]
+position = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_5y3l5")
+
+[node name="CameraShiftArea4" parent="Second/CamFocus" instance=ExtResource("6_5frm0")]
+position = Vector2(398, 68)
+originSet = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/CamFocus/CameraShiftArea4"]
+position = Vector2(-2, 10)
+shape = SubResource("RectangleShape2D_ywvca")
+
+[node name="CameraShiftArea2" parent="Second/CamFocus" instance=ExtResource("6_5frm0")]
+position = Vector2(591, -43)
+originSet = Vector2(0, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/CamFocus/CameraShiftArea2"]
+position = Vector2(-19, 2)
+shape = SubResource("RectangleShape2D_fqwvf")
+
+[node name="CameraShiftArea3" parent="Second/CamFocus" instance=ExtResource("6_5frm0")]
+position = Vector2(640, -43)
+originSet = Vector2(12, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Second/CamFocus/CameraShiftArea3"]
 position = Vector2(-19, 2)
 shape = SubResource("RectangleShape2D_fqwvf")
 
 [node name="player" parent="." instance=ExtResource("2_geoaq")]
-position = Vector2(417, 76)
+position = Vector2(90, 437)
