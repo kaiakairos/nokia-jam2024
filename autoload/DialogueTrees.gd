@@ -17,8 +17,21 @@ func frozenBeast():
 	await Global.runDialogue("You get the sense that you shouldn't be looking at them.",true)
 	return
 
+func snowMound():
+	await Global.runDialogue("A huge mound of ice blocks your way.")
+	await Global.runDialogue("You can hear the subtle movement of water.",true)
+	return
+
 func frozenDoor():
 	await Global.runDialogue("The door is frozen shut.",true)
+	return
+
+func lockedDoor():
+	await Global.runDialogue("The door is locked.",true)
+	return
+	
+func unlockedDoor():
+	await Global.runDialogue("The key opened the door.",true)
 	return
 
 func struggleDoor():
