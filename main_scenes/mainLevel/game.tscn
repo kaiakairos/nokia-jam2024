@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://08kga67yko78"]
+[gd_scene load_steps=24 format=3 uid="uid://08kga67yko78"]
 
 [ext_resource type="Script" path="res://main_scenes/mainLevel/game.gd" id="1_qumyb"]
 [ext_resource type="Texture2D" uid="uid://b00jj7tu4uck1" path="res://main_scenes/backgroundArts/entrance.png" id="1_ta0qr"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cj0c3xodii74i" path="res://main_scenes/backgroundArts/unfrozenDoor.png" id="9_5ov7o"]
 [ext_resource type="Texture2D" uid="uid://dvxokywyyameo" path="res://main_scenes/backgroundArts/unfrozenEntrance.png" id="9_h227m"]
 [ext_resource type="Texture2D" uid="uid://b7mnp0jjs38kb" path="res://main_scenes/backgroundArts/unfrozenHallway.png" id="10_y8bw8"]
+[ext_resource type="Texture2D" uid="uid://bulol0w4egjro" path="res://main_scenes/backgroundArts/chaseHallway.png" id="13_qd5ow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ax044"]
 size = Vector2(28, 28)
@@ -492,6 +493,12 @@ originSet = Vector2(12, -12)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Second/CamFocus/CameraShiftArea3"]
 position = Vector2(-19, 2)
 shape = SubResource("RectangleShape2D_fqwvf")
+
+[node name="Hallway" type="Node2D" parent="."]
+
+[node name="ChaseHallway" type="Sprite2D" parent="Hallway"]
+position = Vector2(879, 129)
+texture = ExtResource("13_qd5ow")
 
 [node name="player" parent="." instance=ExtResource("2_geoaq")]
 position = Vector2(90, 437)
